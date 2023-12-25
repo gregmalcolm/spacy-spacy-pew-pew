@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://gyl0r1wah0t5"]
+
+[ext_resource type="Script" path="res://title_screen.gd" id="1_6wyrq"]
+[ext_resource type="Theme" uid="uid://bj7l2colihup2" path="res://space_theme.tres" id="1_f41bh"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6wyrq")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 273.0
+offset_top = 74.0
+offset_right = 856.0
+offset_bottom = 145.0
+theme_override_colors/font_color = Color(0, 0.698039, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "Spacy Spacy Shoot Shoot!"
+
+[node name="PlayButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 420.0
+offset_top = 250.0
+offset_right = 679.0
+offset_bottom = 418.0
+theme = ExtResource("1_f41bh")
+theme_override_font_sizes/font_size = 36
+text = "Play"
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 420.0
+offset_top = 512.0
+offset_right = 679.0
+offset_bottom = 599.0
+theme = ExtResource("1_f41bh")
+theme_override_font_sizes/font_size = 18
+text = "Let me out!"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="QuitButton" to="QuitButton" method="_on_pressed"]
