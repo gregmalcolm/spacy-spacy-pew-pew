@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://gyl0r1wah0t5"]
 
-[ext_resource type="Script" path="res://title_screen.gd" id="1_6wyrq"]
-[ext_resource type="Theme" uid="uid://bj7l2colihup2" path="res://space_theme.tres" id="1_f41bh"]
+[ext_resource type="Script" path="res://TitleScreen/title_screen.gd" id="1_vc7xx"]
+[ext_resource type="Theme" uid="uid://bj7l2colihup2" path="res://space_theme.tres" id="2_nw7s1"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_6wyrq")
+script = ExtResource("1_vc7xx")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 0
@@ -28,7 +28,7 @@ offset_left = 420.0
 offset_top = 250.0
 offset_right = 679.0
 offset_bottom = 418.0
-theme = ExtResource("1_f41bh")
+theme = ExtResource("2_nw7s1")
 theme_override_font_sizes/font_size = 36
 text = "Play"
 
@@ -38,7 +38,7 @@ offset_left = 420.0
 offset_top = 512.0
 offset_right = 679.0
 offset_bottom = 599.0
-theme = ExtResource("1_f41bh")
+theme = ExtResource("2_nw7s1")
 theme_override_font_sizes/font_size = 18
 text = "Let me out!"
 
