@@ -12,7 +12,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vc7xx")
 
-[node name="Title" type="Label" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1135.0
+offset_bottom = 648.0
+color = Color(0.521569, 0.137255, 0.262745, 1)
+
+[node name="Title" type="Label" parent="ColorRect"]
 layout_mode = 0
 offset_left = 273.0
 offset_top = 74.0
@@ -22,7 +28,7 @@ theme_override_colors/font_color = Color(0, 0.698039, 1, 1)
 theme_override_font_sizes/font_size = 48
 text = "Spacy Spacy Shoot Shoot!"
 
-[node name="PlayButton" type="Button" parent="."]
+[node name="PlayButton" type="Button" parent="ColorRect"]
 layout_mode = 0
 offset_left = 420.0
 offset_top = 250.0
@@ -32,7 +38,7 @@ theme = ExtResource("2_nw7s1")
 theme_override_font_sizes/font_size = 36
 text = "Play"
 
-[node name="QuitButton" type="Button" parent="."]
+[node name="QuitButton" type="Button" parent="ColorRect"]
 layout_mode = 0
 offset_left = 420.0
 offset_top = 512.0
@@ -42,6 +48,6 @@ theme = ExtResource("2_nw7s1")
 theme_override_font_sizes/font_size = 18
 text = "Let me out!"
 
-[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="QuitButton" to="QuitButton" method="_on_pressed"]
+[connection signal="pressed" from="ColorRect/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="ColorRect/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="ColorRect/QuitButton" to="ColorRect/QuitButton" method="_on_pressed"]
