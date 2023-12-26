@@ -79,5 +79,5 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_x2ikk")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.290187
+frame_progress = 0.750485
 metadata/_edit_lock_ = true

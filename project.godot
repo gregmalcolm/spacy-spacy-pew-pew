@@ -17,9 +17,14 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/mode=3
+window/size/viewport_width=720
+window/size/viewport_height=1280
+window/size/window_width_override=360
+window/size/window_height_override=640
 window/stretch/mode="canvas_items"
-window/name="Space-survival-game"
+window/stretch/aspect="expand"
+window/handheld/orientation=1
+window/name="Spacy Spacy pew pew"
 
 [rendering]
 
