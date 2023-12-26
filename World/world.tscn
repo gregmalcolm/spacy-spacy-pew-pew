@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://cn4dhpkb03dc"]
+[gd_scene load_steps=2 format=3 uid="uid://cn4dhpkb03dc"]
 
-[node name="World" type="CanvasLayer"]
+[ext_resource type="Script" path="res://World/world.gd" id="1_a214h"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_a214h")
