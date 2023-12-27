@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cn4dhpkb03dc"]
+[gd_scene load_steps=4 format=3 uid="uid://cn4dhpkb03dc"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_a214h"]
 [ext_resource type="PackedScene" uid="uid://bvwy4ms4qg3h6" path="res://Player/player.tscn" id="2_1htsu"]
+[ext_resource type="PackedScene" uid="uid://dfs25s8gy3pfu" path="res://BG/bg_starfield.tscn" id="3_rlhdh"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_a214h")
+
+[node name="BGStarfield" parent="." instance=ExtResource("3_rlhdh")]
 
 [node name="Player" parent="." instance=ExtResource("2_1htsu")]
 position = Vector2(360, 768)
