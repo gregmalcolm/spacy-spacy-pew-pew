@@ -12,15 +12,17 @@ spread = 5.0
 initial_velocity_min = 40.0
 initial_velocity_max = 40.0
 gravity = Vector3(0, 0, 0)
-scale_min = 0.05
-scale_max = 0.05
+scale_min = 0.02
+scale_max = 0.02
 
 [node name="BGStarfield" type="ParallaxBackground"]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+z_index = -100
+motion_mirroring = Vector2(1500, 0)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="ParallaxLayer"]
-position = Vector2(1000, -1)
+position = Vector2(800, -1)
 amount = 300
 process_material = SubResource("ParticleProcessMaterial_u0hhu")
 texture = ExtResource("1_jy7b1")
