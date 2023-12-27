@@ -1,60 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://dfs25s8gy3pfu"]
+[gd_scene load_steps=3 format=3 uid="uid://basb7sw3f5ba"]
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hi0uv"]
+[ext_resource type="Texture2D" uid="uid://vuxtktta46kf" path="res://Assets/kenney_particle-pack/PNG (Transparent)/star_05.png" id="1_jy7b1"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ssju0"]
 particle_flag_disable_z = true
 emission_shape = 3
-emission_box_extents = Vector3(1, 900, 1)
-spread = 10.0
-initial_velocity_min = -2.0
-initial_velocity_max = -2.0
+emission_box_extents = Vector3(1000, 0, 0)
+angle_max = 360.0
+direction = Vector3(0, 1, 0)
+spread = 5.0
+initial_velocity_min = 40.0
+initial_velocity_max = 40.0
 gravity = Vector3(0, 0, 0)
-scale_min = 2.0
-scale_max = 2.0
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p5lrf"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(1, 900, 1)
-spread = 10.0
-initial_velocity_min = -5.0
-initial_velocity_max = -5.0
-gravity = Vector3(0, 0, 0)
-scale_min = 3.0
-scale_max = 3.0
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nt6wy"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(1, 900, 1)
-spread = 10.0
-initial_velocity_min = -8.0
-initial_velocity_max = -8.0
-gravity = Vector3(0, 0, 0)
-scale_min = 4.0
-scale_max = 4.0
+scale_min = 0.05
+scale_max = 0.05
 
 [node name="BGStarfield" type="Node2D"]
 
-[node name="StarfieldBack" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 z_index = -100
-position = Vector2(800, 640)
-amount = 250
-process_material = SubResource("ParticleProcessMaterial_hi0uv")
-lifetime = 500.0
-preprocess = 500.0
-
-[node name="StarfieldMiddle" type="GPUParticles2D" parent="."]
-z_index = -100
-position = Vector2(800, 640)
-amount = 80
-process_material = SubResource("ParticleProcessMaterial_p5lrf")
-lifetime = 200.0
-preprocess = 200.0
-
-[node name="StarfieldFront" type="GPUParticles2D" parent="."]
-z_index = -100
-position = Vector2(800, 640)
-amount = 20
-process_material = SubResource("ParticleProcessMaterial_nt6wy")
-lifetime = 150.0
-preprocess = 150.0
+position = Vector2(1000, -1)
+amount = 300
+process_material = SubResource("ParticleProcessMaterial_ssju0")
+texture = ExtResource("1_jy7b1")
+lifetime = 100.0
+preprocess = 1000.0
+speed_scale = 0.1
+randomness = 0.6
