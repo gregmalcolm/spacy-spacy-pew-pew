@@ -71,13 +71,13 @@ animations = [{
 script = ExtResource("1_w4d3y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
+position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_r624q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 8)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_x2ikk")
 animation = &"Idle"
 autoplay = "Idle"
 frame_progress = 0.975526
-metadata/_edit_lock_ = true
