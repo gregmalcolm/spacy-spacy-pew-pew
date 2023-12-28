@@ -11,3 +11,14 @@ script = ExtResource("1_a214h")
 
 [node name="Player" parent="." instance=ExtResource("2_1htsu")]
 position = Vector2(360, 768)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScreenPos" type="Label" parent="CanvasLayer"]
+offset_left = 484.0
+offset_top = 25.0
+offset_right = 686.0
+offset_bottom = 59.0
+theme_override_font_sizes/font_size = 24
+text = "Coords
+"

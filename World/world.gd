@@ -6,7 +6,7 @@ func _ready():
 
 
 func _process(_delta):
-	pass
+	$CanvasLayer/ScreenPos.text = str($Player.position.round())
 
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):

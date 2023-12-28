@@ -20,20 +20,20 @@ color = Color(0.521569, 0.137255, 0.262745, 1)
 
 [node name="Title" type="Label" parent="ColorRect"]
 layout_mode = 0
-offset_left = 65.0
-offset_top = 68.0
-offset_right = 648.0
-offset_bottom = 139.0
+offset_left = 106.0
+offset_top = 80.0
+offset_right = 626.0
+offset_bottom = 151.0
 theme_override_colors/font_color = Color(0, 0.698039, 1, 1)
 theme_override_font_sizes/font_size = 48
-text = "Spacy Spacy Shoot Shoot!"
+text = "Spacy Spacy Pew Pew!"
 
 [node name="PlayButton" type="Button" parent="ColorRect"]
 layout_mode = 0
 offset_left = 224.0
-offset_top = 328.0
+offset_top = 528.0
 offset_right = 483.0
-offset_bottom = 496.0
+offset_bottom = 696.0
 theme = ExtResource("2_nw7s1")
 theme_override_font_sizes/font_size = 36
 text = "Play"
