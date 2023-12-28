@@ -17,7 +17,7 @@ scale_max = 0.03
 
 [node name="BGStarfield" type="Node2D"]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="Starfieldback" type="GPUParticles2D" parent="."]
 position = Vector2(360, 640)
 amount = 1000
 process_material = SubResource("ParticleProcessMaterial_u0hhu")
@@ -27,9 +27,3 @@ preprocess = 600.0
 speed_scale = 0.1
 randomness = 0.6
 visibility_rect = Rect2(-1500, -1500, 3000, 3000)
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-z_index = -100
-motion_mirroring = Vector2(1500, 0)
