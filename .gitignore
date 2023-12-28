@@ -14,9 +14,9 @@ export_presets.cfg
 data_*/
 mono_crash.*.json
 
-# Lazy editor stuff
+# Lazy editor stuff that aught really to be local git ignore
 .vscode
-
+.DS_Store
 
 *.tmp
 Assets/*
