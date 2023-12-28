@@ -20,4 +20,6 @@ mono_crash.*.json
 
 *.tmp
 Assets/*
+addons/*
 !Assets/README.md
+!addons/README.md

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://crxhfhlw7g1is"]
+
+[ext_resource type="Texture2D" path="res://addons/SpaceshipShooterGodot/Backgrounds/Desert/desert-backgorund.png" id="1_c8oye"]
+[ext_resource type="PackedScene" uid="uid://cf1ggywpp3eq1" path="res://Particles/Starfield.tscn" id="2_lgrgo"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(2048, 2176)
+
+[node name="Desert-backgorund" type="Sprite2D" parent="ParallaxLayer"]
+modulate = Color(1, 1, 1, 0.0941176)
+scale = Vector2(8, 8)
+texture = ExtResource("1_c8oye")
+centered = false
+
+[node name="Starfield" parent="ParallaxLayer" instance=ExtResource("2_lgrgo")]

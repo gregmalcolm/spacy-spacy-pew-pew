@@ -1,10 +1,6 @@
 extends Node2D
 
 
-func _ready():
-	pass
-
-
 func _process(_delta):
 	$CanvasLayer/ScreenPos.text = str($Player.position.round())
 

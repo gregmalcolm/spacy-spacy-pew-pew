@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://bvwy4ms4qg3h6"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_w4d3y"]
-[ext_resource type="Texture2D" uid="uid://2tr5tn0aw3yx" path="res://Assets/SpaceshipShooterGodot/Player/ship.png" id="2_xca04"]
+[ext_resource type="Texture2D" uid="uid://2tr5tn0aw3yx" path="res://addons/SpaceshipShooterGodot/Player/ship.png" id="2_xca04"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r624q"]
 radius = 7.0
