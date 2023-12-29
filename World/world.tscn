@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_a214h"]
 [ext_resource type="PackedScene" uid="uid://bvwy4ms4qg3h6" path="res://Player/player.tscn" id="2_1htsu"]
-[ext_resource type="PackedScene" uid="uid://crxhfhlw7g1is" path="res://Backgrounds/StarfieldParallax.tscn" id="3_81bpd"]
+[ext_resource type="PackedScene" uid="uid://dsh0qto71angx" path="res://Backgrounds/MirroredStarfield.tscn" id="3_ksmdk"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_a214h")
@@ -21,5 +21,4 @@ theme_override_font_sizes/font_size = 24
 text = "Coords
 "
 
-[node name="StarfieldParallax" parent="." instance=ExtResource("3_81bpd")]
-follow_viewport_enabled = false
+[node name="MirroredStarfield" parent="." instance=ExtResource("3_ksmdk")]
