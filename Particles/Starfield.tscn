@@ -5,8 +5,9 @@
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_polje"]
 particle_flag_disable_z = true
+emission_shape_offset = Vector3(1024, 1088, 0)
 emission_shape = 3
-emission_box_extents = Vector3(2048, 2176, 1)
+emission_box_extents = Vector3(1024, 1088, 1)
 direction = Vector3(0, 1, 0)
 spread = 5.571
 gravity = Vector3(0, 0, 0)

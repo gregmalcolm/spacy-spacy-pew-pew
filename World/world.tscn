@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_a214h"]
 [ext_resource type="PackedScene" uid="uid://bvwy4ms4qg3h6" path="res://Player/player.tscn" id="2_1htsu"]
-[ext_resource type="PackedScene" uid="uid://dsh0qto71angx" path="res://Backgrounds/MirroredStarfield.tscn" id="3_ksmdk"]
+[ext_resource type="PackedScene" uid="uid://dsh0qto71angx" path="res://Backgrounds/TileSnapStarfield.tscn" id="3_ksmdk"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_a214h")
+show_position = true
 
 [node name="Player" parent="." instance=ExtResource("2_1htsu")]
 position = Vector2(360, 640)
@@ -13,9 +14,9 @@ position = Vector2(360, 640)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ScreenPos" type="Label" parent="CanvasLayer"]
-offset_left = 484.0
+offset_left = 599.0
 offset_top = 25.0
-offset_right = 686.0
+offset_right = 694.0
 offset_bottom = 59.0
 theme_override_font_sizes/font_size = 24
 text = "Coords

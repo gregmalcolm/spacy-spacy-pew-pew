@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dsh0qto71angx"]
+
+[ext_resource type="PackedScene" uid="uid://cvdfcm57k7ut8" path="res://Backgrounds/TileSnapLayer.tscn" id="1_p7lbo"]
+[ext_resource type="PackedScene" uid="uid://cf1ggywpp3eq1" path="res://Particles/Starfield.tscn" id="2_v6up3"]
+
+[node name="TileSnapStarfield" type="Node2D"]
+
+[node name="TileSnapLayer" parent="." instance=ExtResource("1_p7lbo")]
+sizing = Vector2(2048, 2176)
+
+[node name="Starfield" parent="TileSnapLayer" instance=ExtResource("2_v6up3")]
