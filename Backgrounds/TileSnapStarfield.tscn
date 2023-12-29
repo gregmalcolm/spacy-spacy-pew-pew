@@ -9,3 +9,4 @@
 sizing = Vector2(2048, 2176)
 
 [node name="BackStarfield" parent="TileSnapBackLayer" instance=ExtResource("2_v6up3")]
+visibility_rect = Rect2(0, 0, 100, 100)
