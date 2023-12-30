@@ -11,6 +11,8 @@ func _relign_all_child_nodes():
 	for child in get_children():
 		if (child is Node2D): 
 			_realign_child_node(child)
+		if (child is GPUParticles2D):
+			_move_child_particles(child):
 
 func _realign_child_node(child):
 	var camera = get_viewport().get_camera_2d()
@@ -18,3 +20,7 @@ func _realign_child_node(child):
 
 	child.position.x = offset.x + (floor(camera_position.x/sizing.x) * sizing.x)
 	child.position.y = offset.y + (floor(camera_position.y/sizing.y) * sizing.y)
+	
+func _move_child_particles(child):
+	print child.children().count
+	pass
