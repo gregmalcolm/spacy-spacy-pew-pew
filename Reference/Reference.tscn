@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://qlxaers6pf6q"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_baovo"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+
+[node name="Reference" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+process_material = SubResource("ParticleProcessMaterial_baovo")
