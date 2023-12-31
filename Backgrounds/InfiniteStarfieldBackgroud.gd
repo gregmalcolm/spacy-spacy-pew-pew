@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var tile_size := Vector2(1000, 1000)
+@export var tile_size := Vector2(500, 500)
 
 var particles_matrix
 
@@ -8,8 +8,13 @@ func _ready():
 	_setupParticles()
 
 
+func _process(_delta):
+	_realign_particles_grid()
+
+
 func _emptyParticlesMatrix():
 	return [[null, null], [null, null]]
+
 
 func _buildParticlesNode(index = 0):
 	var mid_tile_size = tile_size * 0.5
@@ -34,7 +39,7 @@ func _buildParticlesNode(index = 0):
 		tile_size * 1.2,
 	)
 	particles.position = Vector2.ZERO
-	particles.visibility_rect_color = Color.from_hsv(0.2 + (index * 0.2), 0.7, .6, 0.2)
+	particles.visibility_rect_color = Color.from_hsv(0.2 + (index * 0.2), 0.7, .6, 0.05)
 
 	return particles
 
@@ -49,12 +54,42 @@ func _setupParticles():
 			index += 1
 
 	particles_matrix[0][1].position.x += tile_size.x
+	particles_matrix[0][1].grid_offset.x = tile_size.x
+	
 	particles_matrix[1][0].position.y += tile_size.y
+	particles_matrix[1][0].grid_offset.y = tile_size.y
+	
 	particles_matrix[1][1].position.x += tile_size.x
 	particles_matrix[1][1].position.y += tile_size.y
-				
+	particles_matrix[1][1].grid_offset.x = tile_size.x
+	particles_matrix[1][1].grid_offset.y = tile_size.y
+
 	for y in range(0,2):
 		for x in range(0,2):
 			add_child(particles_matrix[y][x])
 	
 	
+func _realign_particles_grid():
+	_realign_paricles_node(particles_matrix[0][0])
+	_realign_paricles_node(particles_matrix[1][0])
+
+
+func _realign_paricles_node(node):
+	var camera = get_viewport().get_camera_2d()
+	var camera_position = camera.get_screen_center_position()
+
+	node.global_position.x = _realign_paricles_node_on_axis(
+		camera_position.x, 
+		tile_size.x,
+		node.grid_offset.x,
+	)
+	node.global_position.y = _realign_paricles_node_on_axis(
+		camera_position.y, 
+		tile_size.y,
+		node.grid_offset.y,
+	)
+
+func _realign_paricles_node_on_axis(camera_position, tile_len, grid_offset):
+	var snap_offset = tile_len
+	
+	return floor(camera_position/snap_offset) * snap_offset
