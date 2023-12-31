@@ -32,6 +32,7 @@ func _buildParticlesNode(index = 0):
 	particles.amount = 100 
 	particles.lifetime = 500
 	particles.preprocess = 500
+	#particles.speed_scale = 64
 	particles.texture = preload("res://addons/kenney_particle-pack/PNG (Transparent)/star_05.png")
 	particles.process_material = process_material
 	particles.visibility_rect = Rect2(
@@ -78,18 +79,21 @@ func _realign_paricles_node(node):
 	var camera = get_viewport().get_camera_2d()
 	var camera_position = camera.get_screen_center_position()
 
-	node.global_position.x = _realign_paricles_node_on_axis(
+	var old_position = node.position
+	node.position.x = _realign_paricles_node_on_axis(
 		camera_position.x, 
 		tile_size.x,
 		node.grid_offset.x,
 	)
-	node.global_position.y = _realign_paricles_node_on_axis(
+	node.position.y = _realign_paricles_node_on_axis(
 		camera_position.y, 
 		tile_size.y,
 		node.grid_offset.y,
 	)
+	if old_position != node.position:
+		#node.restart()
+		pass
 
 func _realign_paricles_node_on_axis(camera_position, tile_len, grid_offset):
 	var snap_offset = tile_len
-	
 	return floor(camera_position/snap_offset) * snap_offset
