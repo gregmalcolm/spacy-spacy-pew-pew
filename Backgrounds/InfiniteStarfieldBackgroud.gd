@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var tile_size := Vector2(500, 500)
+@export var tile_size := Vector2(1000, 1000)
 
 var particles_matrix
 
@@ -19,8 +19,8 @@ func _buildParticlesNode(index = 0):
 	process_material.emission_shape_offset = Vector3(mid_tile_size.x, mid_tile_size.y, 0)
 	process_material.emission_box_extents = Vector3(mid_tile_size.x, mid_tile_size.y, 0)
 	process_material.gravity = Vector3.ZERO
-	process_material.scale_min = 0.1
-	process_material.scale_max = 0.3
+	process_material.scale_min = 0.01
+	process_material.scale_max = 0.03
 	process_material.hue_variation_max = 0.05
 	
 	var particles = StarfieldParticles.new()
@@ -29,7 +29,6 @@ func _buildParticlesNode(index = 0):
 	particles.preprocess = 500
 	particles.texture = preload("res://addons/kenney_particle-pack/PNG (Transparent)/star_05.png")
 	particles.process_material = process_material
-	particles.modulate = Color(1, 1, 1, 0.95)
 	particles.visibility_rect = Rect2(
 		Vector2.ZERO,
 		tile_size * 1.2,
