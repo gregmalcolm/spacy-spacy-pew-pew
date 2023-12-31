@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_a214h"]
 [ext_resource type="PackedScene" uid="uid://bvwy4ms4qg3h6" path="res://Player/player.tscn" id="2_1htsu"]
-[ext_resource type="PackedScene" uid="uid://dsh0qto71angx" path="res://Backgrounds/TileSnapStarfield.tscn" id="3_ksmdk"]
+[ext_resource type="PackedScene" uid="uid://ctpsjhlrakeat" path="res://Backgrounds/InfiniteStarfieldBackgroud.tscn" id="3_sf7im"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_a214h")
@@ -22,4 +22,4 @@ theme_override_font_sizes/font_size = 24
 text = "Coords
 "
 
-[node name="MirroredStarfield" parent="." instance=ExtResource("3_ksmdk")]
+[node name="InfiniteStarfieldBackgroud" parent="." instance=ExtResource("3_sf7im")]
