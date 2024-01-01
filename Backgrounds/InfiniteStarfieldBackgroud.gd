@@ -124,8 +124,9 @@ func _grid_alignment(grid_offset):
 	return pos
 
 func _align_paricles_node_on_axis(camera_position, tile_len, _grid_offset):
-	var snap_offset = tile_len + _grid_offset
-	return floor(camera_position/snap_offset) * snap_offset
+	#var snap_offset = tile_len + _grid_offset
+	var snap_offset = tile_len * 2
+	return (floor((camera_position + _grid_offset)/snap_offset) * snap_offset) - _grid_offset
 	
 
 func _fast_rebuild_particles_node(node):
