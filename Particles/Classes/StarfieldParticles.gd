@@ -6,6 +6,7 @@ class_name StarfieldParticles extends GPUParticles2D
 
 @export_subgroup("starfield")
 @export var grid_offset := Vector2.ZERO
+@export var timer = Timer.new()
 
 func _draw():
 	if debug_mode and visibility_rect_color and OS.is_debug_build():

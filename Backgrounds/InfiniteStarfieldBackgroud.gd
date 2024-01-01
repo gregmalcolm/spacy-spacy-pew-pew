@@ -10,7 +10,11 @@ func _ready():
 
 func _process(_delta):
 	_realign_particles_grid()
+	
 
+func _on_rebuild_timer_timeout(node):
+	print("_on_rebuild_timer_timeout")
+	node.speed_scale = 1
 
 func _emptyParticlesMatrix():
 	return [[null, null], [null, null]]
@@ -32,7 +36,6 @@ func _buildParticlesNode(index = 0):
 	particles.amount = 100 
 	particles.lifetime = 500
 	particles.preprocess = 500
-	#particles.speed_scale = 64
 	particles.texture = preload("res://addons/kenney_particle-pack/PNG (Transparent)/star_05.png")
 	particles.process_material = process_material
 	particles.visibility_rect = Rect2(
@@ -93,9 +96,14 @@ func _realign_paricles_node(node):
 	if old_position != node.position:
 		node.speed_scale = 64
 		print("starting")
-		await get_tree().create_timer(10.0).timeout 
-		print("stopping")
-		node.speed_scale = 1
+		var timer = $RebuildTimer
+		timer.stop()
+		timer.wait_time = 1
+		timer.timeout.disconnect(_on_rebuild_timer_timeout)
+		timer.timeout.connect(_on_rebuild_timer_timeout.bind(node))
+		timer.start()
+		#node.speed_scale = 1
+
 
 func _realign_paricles_node_on_axis(camera_position, tile_len, grid_offset):
 	var snap_offset = tile_len

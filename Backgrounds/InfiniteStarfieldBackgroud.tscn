@@ -4,3 +4,6 @@
 
 [node name="InfiniteStarfieldBackgroud" type="Node2D"]
 script = ExtResource("1_lpft3")
+
+[node name="RebuildTimer" type="Timer" parent="."]
+one_shot = true
