@@ -44,6 +44,7 @@ func _buildParticlesNode(index = 0):
 	)
 	particles.position = Vector2.ZERO
 	particles.visibility_rect_color = Color.from_hsv(0.2 + (index * 0.2), 0.7, .6, 0.05)
+	particles.timer = Timer.new()
 
 	return particles
 
@@ -96,12 +97,11 @@ func _realign_paricles_node(node):
 	if old_position != node.position:
 		node.speed_scale = 64
 		print("starting")
-		var timer = $RebuildTimer
-		timer.stop()
-		timer.wait_time = 1
-		timer.timeout.disconnect(_on_rebuild_timer_timeout)
-		timer.timeout.connect(_on_rebuild_timer_timeout.bind(node))
-		timer.start()
+		node.timer.stop()
+		node.timer.wait_time = 1
+		node.timer.timeout.disconnect(_on_rebuild_timer_timeout)
+		node.timer.timeout.connect(_on_rebuild_timer_timeout.bind(node))
+		node.timer.start()
 		#node.speed_scale = 1
 
 
