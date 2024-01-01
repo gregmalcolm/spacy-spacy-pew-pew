@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var tile_size := Vector2(500, 500)
+@export var tile_size := Vector2(200, 200)
 
 var particles_matrix
 
@@ -72,7 +72,7 @@ func _setupParticles():
 	
 func _realign_particles_grid():
 	_realign_paricles_node(particles_matrix[0][0])
-	_realign_paricles_node(particles_matrix[1][0])
+	#_realign_paricles_node(particles_matrix[1][0])
 
 
 func _realign_paricles_node(node):
@@ -91,8 +91,11 @@ func _realign_paricles_node(node):
 		node.grid_offset.y,
 	)
 	if old_position != node.position:
-		#node.restart()
-		pass
+		node.speed_scale = 64
+		print("starting")
+		await get_tree().create_timer(10.0).timeout 
+		print("stopping")
+		node.speed_scale = 1
 
 func _realign_paricles_node_on_axis(camera_position, tile_len, grid_offset):
 	var snap_offset = tile_len

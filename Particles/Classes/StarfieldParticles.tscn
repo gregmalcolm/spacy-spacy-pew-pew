@@ -8,4 +8,5 @@ gravity = Vector3(0, 98, 0)
 
 [node name="StarfieldParticles" type="GPUParticles2D"]
 process_material = SubResource("ParticleProcessMaterial_oyuuu")
+speed_scale = 0.0
 script = ExtResource("1_ynfa4")
