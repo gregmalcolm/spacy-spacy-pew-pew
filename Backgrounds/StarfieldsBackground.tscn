@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://dctnqw2bmh8eu"]
+
+[ext_resource type="PackedScene" uid="uid://ctpsjhlrakeat" path="res://Backgrounds/InfiniteStarfieldBackgroud.tscn" id="1_6slfu"]
+
+[node name="StarfieldsBackground" type="Node2D"]
+
+[node name="BackStarfield" parent="." instance=ExtResource("1_6slfu")]
+amount = 100
+
+[node name="MidStarfield" parent="." instance=ExtResource("1_6slfu")]
+amount = 100
+scale_min = 0.02
+scale_max = 0.07
+initial_velocity_min = 2.0
+initial_velocity_max = 10.0
+
+[node name="FrontStarfield" parent="." instance=ExtResource("1_6slfu")]
+amount = 100
+scale_min = 0.03
+scale_max = 0.1
+initial_velocity_min = 2.0
+initial_velocity_max = 10.0
+
+[node name="FrontStarfield2" parent="." instance=ExtResource("1_6slfu")]
+amount = 20
+stars_texture_resource = "star2"
+scale_min = 0.03
+scale_max = 0.1
+initial_velocity_min = 2.0
+initial_velocity_max = 10.0
+
+[node name="FrontStarfield3" parent="." instance=ExtResource("1_6slfu")]
+amount = 20
+stars_texture_resource = "star4"
+scale_min = 0.03
+scale_max = 0.1
+initial_velocity_min = 2.0
+initial_velocity_max = 10.0

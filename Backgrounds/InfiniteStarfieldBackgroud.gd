@@ -1,10 +1,19 @@
 extends Node2D
 
+@export var tile_size := Vector2(DEFAULT_SIZE_X, DEFAULT_SIZE_Y)
+
+@export_subgroup('particle_overrides')
+@export var amount := 500
+@export var stars_texture_resource := "star5"
+@export var scale_min := 0.01
+@export var scale_max := 0.03
+@export var initial_velocity_min := 0.01
+@export var initial_velocity_max := 0.01
+@export var velocity_direction := Vector3(0.0, 1.0, 0.0)
+
 const SIZE_FACTOR = 2.0
 const DEFAULT_SIZE_X = 2048 * SIZE_FACTOR
 const DEFAULT_SIZE_Y = 2176 * SIZE_FACTOR
-
-@export var tile_size := Vector2(DEFAULT_SIZE_X, DEFAULT_SIZE_Y)
 
 var particles_matrix
 var bearing_west: bool = true
@@ -26,6 +35,8 @@ func _on_rebuild_timer_timeout(node):
 		"y": node.y_index,
 	}))
 	node.speed_scale = 1
+	node.process_material.initial_velocity_min = initial_velocity_min
+	node.process_material.initial_velocity_max = initial_velocity_max
 
 
 func _get_camera_position():
@@ -46,15 +57,29 @@ func _buildParticlesNode(index = 0, x=0, y=0):
 	process_material.emission_shape_offset = Vector3(mid_tile_size.x, mid_tile_size.y, 0)
 	process_material.emission_box_extents = Vector3(mid_tile_size.x, mid_tile_size.y, 0)
 	process_material.gravity = Vector3.ZERO
-	process_material.scale_min = 0.01
-	process_material.scale_max = 0.03
+	process_material.scale_min = scale_min
+	process_material.scale_max = scale_max
 	process_material.hue_variation_max = 0.05
+	process_material.initial_velocity_min = initial_velocity_min
+	process_material.initial_velocity_max = initial_velocity_max
+	process_material.direction = velocity_direction
+	var textures = {
+		"star1" : preload("res://addons/kenney_particle-pack/PNG (Transparent)/star_01.png"),
+		"star2" : preload("res://addons/kenney_particle-pack/PNG (Transparent)/star_02.png"),
+		"star3" : preload("res://addons/kenney_particle-pack/PNG (Transparent)/star_03.png"),
+		"star4" : preload("res://addons/kenney_particle-pack/PNG (Transparent)/star_04.png"),
+		"star5" : preload("res://addons/kenney_particle-pack/PNG (Transparent)/star_05.png"),
+		"star6" : preload("res://addons/kenney_particle-pack/PNG (Transparent)/star_06.png"),
+		"star7" : preload("res://addons/kenney_particle-pack/PNG (Transparent)/star_07.png"),
+		"star8" : preload("res://addons/kenney_particle-pack/PNG (Transparent)/star_08.png"),
+		"star9" : preload("res://addons/kenney_particle-pack/PNG (Transparent)/star_09.png"),
+	}
 	
 	var particles = StarfieldParticles.new()
-	particles.amount = 500
+	particles.amount = amount
 	particles.lifetime = 500
 	particles.preprocess = 500
-	particles.texture = preload("res://addons/kenney_particle-pack/PNG (Transparent)/star_05.png")
+	particles.texture = textures[stars_texture_resource]
 	particles.process_material = process_material
 	particles.visibility_rect = Rect2(
 		Vector2.ZERO,
@@ -84,13 +109,6 @@ func _setupParticles():
 			particles_matrix[y][x] = _buildParticlesNode(index, x, y)
 			index += 1
 
-	#particles_matrix[0][1].position.x += tile_size.x
-	#
-	#particles_matrix[1][0].position.y += tile_size.x
-	#
-	#particles_matrix[1][1].position.x += tile_size.x
-	#particles_matrix[1][1].position.y += tile_size.x
-
 	_calc_grid_offsets()
 	
 	for y in range(0,2):
@@ -106,7 +124,6 @@ func _align_particles_on_grid():
 	for y in range(0,2):
 		for x in range(0,2):
 			_align_particles_node(particles_matrix[y][x])
-	#_align_particles_node(particles_matrix[0][0])
 
 
 func _align_particles_node(node):
@@ -148,6 +165,8 @@ func _align_particles_node_on_axis(camera_position, tile_len, grid_offset, beari
 
 func _fast_rebuild_particles_node(node):
 	node.speed_scale = 64
+	node.process_material.initial_velocity_min = 0.01
+	node.process_material.initial_velocity_max = 0.01
 	node.timer.start()
 	print("fast rebuild started: index: {index} x: {x} y: {y}".format({ 
 		"index": node.index, 
@@ -181,5 +200,3 @@ func _calc_grid_offsets():
 	particles_matrix[1][1].grid_offset.x = grid_offset.x
 	particles_matrix[1][1].grid_offset.y = grid_offset.y
 	
-	#print('grid_offset.y=' + str(grid_offset.y))
-

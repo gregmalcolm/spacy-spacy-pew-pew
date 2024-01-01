@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_a214h"]
 [ext_resource type="PackedScene" uid="uid://bvwy4ms4qg3h6" path="res://Player/player.tscn" id="2_1htsu"]
-[ext_resource type="PackedScene" uid="uid://ctpsjhlrakeat" path="res://Backgrounds/InfiniteStarfieldBackgroud.tscn" id="3_sf7im"]
+[ext_resource type="PackedScene" uid="uid://dctnqw2bmh8eu" path="res://Backgrounds/StarfieldsBackground.tscn" id="2_nhmed"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_a214h")
 show_position = true
 
-[node name="InfiniteStarfieldBackgroud" parent="." instance=ExtResource("3_sf7im")]
+[node name="StarfieldsBackground" parent="." instance=ExtResource("2_nhmed")]
 
 [node name="Player" parent="." instance=ExtResource("2_1htsu")]
 position = Vector2(360, 640)
