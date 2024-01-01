@@ -129,10 +129,8 @@ func _grid_alignment(grid_offset):
 	return pos
 
 func _align_particles_node_on_axis(camera_position, tile_len, _grid_offset):
-	#var snap_offset = tile_len + _grid_offset
-	var snap_offset = tile_len * 2
-	return (floor((camera_position + _grid_offset)/snap_offset) * snap_offset) - _grid_offset
-	
+	var rounding = floor(camera_position/(tile_len * 2.0)) * (tile_len * 2.0)
+	return rounding + _grid_offset
 
 func _fast_rebuild_particles_node(node):
 	node.speed_scale = 64
