@@ -53,7 +53,7 @@ func _buildParticlesNode(index = 0, x=0, y=0):
 	particles.visibility_rect_color = Color.from_hsv(0.2 + (index * 0.2), 0.7, .6, 0.05)
 	
 	var timer = Timer.new()
-	timer.wait_time = 1.0
+	timer.wait_time = 10.0
 	timer.one_shot = true
 	timer.timeout.connect(_on_rebuild_timer_timeout.bind(particles))
 	particles.timer = timer
@@ -86,24 +86,27 @@ func _setupParticles():
 
 	for y in range(0,2):
 		for x in range(0,2):
-			add_child(particles_matrix[y][x])
-			add_child(particles_matrix[y][x].timer)
+			var particles = particles_matrix[y][x]
+			particles.position = _grid_alignment(particles.grid_offset)
+			add_child(particles)
+			add_child(particles.timer)
 
 	
 	
 func _align_particles_on_grid():
-	_align_paricles_node(particles_matrix[0][0])
-	#_align_paricles_node(particles_matrix[1][0])
+	for y in range(0,2):
+		for x in range(0,2):
+			_align_paricles_node(particles_matrix[y][x])
 
 
 func _align_paricles_node(node):
 	var old_position = node.position
-	node.position = _grid_alignment(tile_size, node.grid_offset)
+	node.position = _grid_alignment(node.grid_offset)
 	if old_position != node.position:
 		_fast_rebuild_particles_node(node)
 
 
-func _grid_alignment(tile_size, grid_offset):
+func _grid_alignment(grid_offset):
 	var camera = get_viewport().get_camera_2d()
 	var camera_position = camera.get_screen_center_position()
 
@@ -120,9 +123,8 @@ func _grid_alignment(tile_size, grid_offset):
 	)
 	return pos
 
-
 func _align_paricles_node_on_axis(camera_position, tile_len, _grid_offset):
-	var snap_offset = tile_len
+	var snap_offset = tile_len + _grid_offset
 	return floor(camera_position/snap_offset) * snap_offset
 	
 
