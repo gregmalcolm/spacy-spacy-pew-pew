@@ -3,14 +3,16 @@ extends Node2D
 @export var tile_size := Vector2(200, 200)
 
 var particles_matrix
+var bearing_west: bool = true
+var bearing_north: bool = true
 
 func _ready():
 	_setupParticles()
 
 
 func _process(_delta):
+	_calc_grid_offsets()
 	_align_particles_on_grid()
-	
 
 
 func _on_rebuild_timer_timeout(node):
@@ -20,6 +22,11 @@ func _on_rebuild_timer_timeout(node):
 		"y": node.y_index,
 	}))
 	node.speed_scale = 1
+
+
+func _get_camera_position():
+	var camera = get_viewport().get_camera_2d()
+	return camera.get_screen_center_position()
 
 
 func _emptyParticlesMatrix():
@@ -73,17 +80,15 @@ func _setupParticles():
 			particles_matrix[y][x] = _buildParticlesNode(index, x, y)
 			index += 1
 
-	particles_matrix[0][1].position.x += tile_size.x
-	particles_matrix[0][1].grid_offset.x = tile_size.x
-	
-	particles_matrix[1][0].position.y += tile_size.y
-	particles_matrix[1][0].grid_offset.y = tile_size.y
-	
-	particles_matrix[1][1].position.x += tile_size.x
-	particles_matrix[1][1].position.y += tile_size.y
-	particles_matrix[1][1].grid_offset.x = tile_size.x
-	particles_matrix[1][1].grid_offset.y = tile_size.y
+	#particles_matrix[0][1].position.x += tile_size.x
+	#
+	#particles_matrix[1][0].position.y += tile_size.x
+	#
+	#particles_matrix[1][1].position.x += tile_size.x
+	#particles_matrix[1][1].position.y += tile_size.x
 
+	_calc_grid_offsets()
+	
 	for y in range(0,2):
 		for x in range(0,2):
 			var particles = particles_matrix[y][x]
@@ -96,10 +101,11 @@ func _setupParticles():
 func _align_particles_on_grid():
 	for y in range(0,2):
 		for x in range(0,2):
-			_align_paricles_node(particles_matrix[y][x])
+			_align_particles_node(particles_matrix[y][x])
+	#_align_particles_node(particles_matrix[0][0])
 
 
-func _align_paricles_node(node):
+func _align_particles_node(node):
 	var old_position = node.position
 	node.position = _grid_alignment(node.grid_offset)
 	if old_position != node.position:
@@ -107,23 +113,22 @@ func _align_paricles_node(node):
 
 
 func _grid_alignment(grid_offset):
-	var camera = get_viewport().get_camera_2d()
-	var camera_position = camera.get_screen_center_position()
+	var camera_position = _get_camera_position()
 
 	var pos = Vector2.ZERO
-	pos.x = _align_paricles_node_on_axis(
+	pos.x = _align_particles_node_on_axis(
 		camera_position.x, 
 		tile_size.x,
 		grid_offset.x,
 	)
-	pos.y = _align_paricles_node_on_axis(
+	pos.y = _align_particles_node_on_axis(
 		camera_position.y, 
 		tile_size.y,
 		grid_offset.y,
 	)
 	return pos
 
-func _align_paricles_node_on_axis(camera_position, tile_len, _grid_offset):
+func _align_particles_node_on_axis(camera_position, tile_len, _grid_offset):
 	#var snap_offset = tile_len + _grid_offset
 	var snap_offset = tile_len * 2
 	return (floor((camera_position + _grid_offset)/snap_offset) * snap_offset) - _grid_offset
@@ -132,4 +137,32 @@ func _align_paricles_node_on_axis(camera_position, tile_len, _grid_offset):
 func _fast_rebuild_particles_node(node):
 	node.speed_scale = 64
 	node.timer.start()
+
+
+func _calc_grid_offsets():
+	var camera_position = _get_camera_position()
+
+	const leeway = 0.4
+	if fmod(camera_position.x, tile_size.x) < tile_size.x * leeway:
+		bearing_west = true
+	if fmod(camera_position.x, tile_size.x) > tile_size.x * (1.0 - leeway):
+		bearing_west = false
+		
+	if fmod(camera_position.y, tile_size.y) < tile_size.y * leeway:
+		bearing_north = true
+	if fmod(camera_position.y, tile_size.y) > tile_size.y * (1.0 - leeway):
+		bearing_north = false
+	
+	var grid_offset = Vector2.ZERO
+	grid_offset.x = -tile_size.x if bearing_west else tile_size.x
+	grid_offset.y = -tile_size.y if bearing_north else tile_size.y
+	
+	particles_matrix[0][1].grid_offset.x = grid_offset.x
+	
+	particles_matrix[1][0].grid_offset.y = grid_offset.y
+	
+	particles_matrix[1][1].grid_offset.x = grid_offset.x
+	particles_matrix[1][1].grid_offset.y = grid_offset.y
+	
+	print('grid_offset.y=' + str(grid_offset.y))
 
