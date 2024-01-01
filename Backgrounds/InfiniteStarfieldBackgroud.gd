@@ -12,16 +12,23 @@ func _process(_delta):
 	_realign_particles_grid()
 	
 
+
 func _on_rebuild_timer_timeout(node):
-	print("_on_rebuild_timer_timeout")
+	print("_on_rebuild_timer_timeout index: {index} x: {x} y: {y}".format({ 
+		"index": node.index, 
+		"x": node.x_index, 
+		"y": node.y_index,
+	}))
 	node.speed_scale = 1
+
 
 func _emptyParticlesMatrix():
 	return [[null, null], [null, null]]
 
 
-func _buildParticlesNode(index = 0):
+func _buildParticlesNode(index = 0, x=0, y=0):
 	var mid_tile_size = tile_size * 0.5
+	
 	var process_material = ParticleProcessMaterial.new()
 	process_material.particle_flag_disable_z = true
 	process_material.emission_shape = ParticleProcessMaterial.EmissionShape.EMISSION_SHAPE_BOX 
@@ -44,8 +51,16 @@ func _buildParticlesNode(index = 0):
 	)
 	particles.position = Vector2.ZERO
 	particles.visibility_rect_color = Color.from_hsv(0.2 + (index * 0.2), 0.7, .6, 0.05)
-	particles.timer = Timer.new()
-
+	
+	var timer = Timer.new()
+	timer.wait_time = 1.0
+	timer.one_shot = true
+	timer.timeout.connect(_on_rebuild_timer_timeout.bind(particles))
+	particles.timer = timer
+	
+	particles.index = index
+	particles.x_index = x
+	particles.y_index = y
 	return particles
 
 
@@ -55,7 +70,7 @@ func _setupParticles():
 	var index = 0
 	for y in range(0,2):
 		for x in range(0,2):
-			particles_matrix[y][x] = _buildParticlesNode(index)
+			particles_matrix[y][x] = _buildParticlesNode(index, x, y)
 			index += 1
 
 	particles_matrix[0][1].position.x += tile_size.x
@@ -72,6 +87,8 @@ func _setupParticles():
 	for y in range(0,2):
 		for x in range(0,2):
 			add_child(particles_matrix[y][x])
+			add_child(particles_matrix[y][x].timer)
+
 	
 	
 func _realign_particles_grid():
@@ -97,14 +114,8 @@ func _realign_paricles_node(node):
 	if old_position != node.position:
 		node.speed_scale = 64
 		print("starting")
-		node.timer.stop()
-		node.timer.wait_time = 1
-		node.timer.timeout.disconnect(_on_rebuild_timer_timeout)
-		node.timer.timeout.connect(_on_rebuild_timer_timeout.bind(node))
 		node.timer.start()
-		#node.speed_scale = 1
 
-
-func _realign_paricles_node_on_axis(camera_position, tile_len, grid_offset):
+func _realign_paricles_node_on_axis(camera_position, tile_len, _grid_offset):
 	var snap_offset = tile_len
 	return floor(camera_position/snap_offset) * snap_offset
