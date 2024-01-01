@@ -1,7 +1,7 @@
 class_name StarfieldParticles extends GPUParticles2D
 
 @export_subgroup("debugging")
-@export var debug_mode := true
+@export var debug_mode := false
 @export var visibility_rect_color : Color
 
 @export_subgroup("starfield")

@@ -1,6 +1,10 @@
 extends Node2D
 
-@export var tile_size := Vector2(200, 200)
+const SIZE_FACTOR = 2.0
+const DEFAULT_SIZE_X = 2048 * SIZE_FACTOR
+const DEFAULT_SIZE_Y = 2176 * SIZE_FACTOR
+
+@export var tile_size := Vector2(DEFAULT_SIZE_X, DEFAULT_SIZE_Y)
 
 var particles_matrix
 var bearing_west: bool = true
@@ -47,7 +51,7 @@ func _buildParticlesNode(index = 0, x=0, y=0):
 	process_material.hue_variation_max = 0.05
 	
 	var particles = StarfieldParticles.new()
-	particles.amount = 100 
+	particles.amount = 500
 	particles.lifetime = 500
 	particles.preprocess = 500
 	particles.texture = preload("res://addons/kenney_particle-pack/PNG (Transparent)/star_05.png")
@@ -60,7 +64,7 @@ func _buildParticlesNode(index = 0, x=0, y=0):
 	particles.visibility_rect_color = Color.from_hsv(0.2 + (index * 0.2), 0.7, .6, 0.05)
 	
 	var timer = Timer.new()
-	timer.wait_time = 10.0
+	timer.wait_time = 20.0
 	timer.one_shot = true
 	timer.timeout.connect(_on_rebuild_timer_timeout.bind(particles))
 	particles.timer = timer
@@ -120,35 +124,53 @@ func _grid_alignment(grid_offset):
 		camera_position.x, 
 		tile_size.x,
 		grid_offset.x,
+		bearing_west,
 	)
 	pos.y = _align_particles_node_on_axis(
 		camera_position.y, 
 		tile_size.y,
 		grid_offset.y,
+		bearing_north,
 	)
 	return pos
 
-func _align_particles_node_on_axis(camera_position, tile_len, _grid_offset):
-	var rounding = floor(camera_position/(tile_len * 2.0)) * (tile_len * 2.0)
-	return rounding + _grid_offset
+func _align_particles_node_on_axis(camera_position, tile_len, grid_offset, bearing_forward):
+	var old_rounded = floor(camera_position/tile_len) * tile_len
+	var old_double_rounded = floor(camera_position/(tile_len * 2.0)) * (tile_len * 2.0)
+	
+	var forwards_bound_rounding = floor(camera_position/(tile_len * 2.0)) * (tile_len * 2.0)
+	var backwards_bound_rounding = floor((camera_position + tile_len)/(tile_len * 2.0)) * (tile_len * 2.0)
+	
+	var rounding = forwards_bound_rounding if bearing_forward else backwards_bound_rounding
+	
+	if forwards_bound_rounding == backwards_bound_rounding:
+		return rounding + grid_offset
+	else:
+		return rounding - grid_offset
+
 
 func _fast_rebuild_particles_node(node):
 	node.speed_scale = 64
 	node.timer.start()
+	print("fast rebuild started: index: {index} x: {x} y: {y}".format({ 
+		"index": node.index, 
+		"x": node.x_index, 
+		"y": node.y_index,
+	}))
 
 
 func _calc_grid_offsets():
 	var camera_position = _get_camera_position()
 
 	const leeway = 0.4
-	if fmod(camera_position.x, tile_size.x) < tile_size.x * leeway:
+	if fposmod(camera_position.x, tile_size.x) < tile_size.x * leeway:
 		bearing_west = true
-	if fmod(camera_position.x, tile_size.x) > tile_size.x * (1.0 - leeway):
+	if fposmod(camera_position.x, tile_size.x) > tile_size.x * (1.0 - leeway):
 		bearing_west = false
 		
-	if fmod(camera_position.y, tile_size.y) < tile_size.y * leeway:
+	if fposmod(camera_position.y, tile_size.y) < tile_size.y * leeway:
 		bearing_north = true
-	if fmod(camera_position.y, tile_size.y) > tile_size.y * (1.0 - leeway):
+	if fposmod(camera_position.y, tile_size.y) > tile_size.y * (1.0 - leeway):
 		bearing_north = false
 	
 	var grid_offset = Vector2.ZERO
@@ -162,5 +184,5 @@ func _calc_grid_offsets():
 	particles_matrix[1][1].grid_offset.x = grid_offset.x
 	particles_matrix[1][1].grid_offset.y = grid_offset.y
 	
-	print('grid_offset.y=' + str(grid_offset.y))
+	#print('grid_offset.y=' + str(grid_offset.y))
 
