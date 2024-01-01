@@ -135,9 +135,6 @@ func _grid_alignment(grid_offset):
 	return pos
 
 func _align_particles_node_on_axis(camera_position, tile_len, grid_offset, bearing_forward):
-	var old_rounded = floor(camera_position/tile_len) * tile_len
-	var old_double_rounded = floor(camera_position/(tile_len * 2.0)) * (tile_len * 2.0)
-	
 	var forwards_bound_rounding = floor(camera_position/(tile_len * 2.0)) * (tile_len * 2.0)
 	var backwards_bound_rounding = floor((camera_position + tile_len)/(tile_len * 2.0)) * (tile_len * 2.0)
 	
