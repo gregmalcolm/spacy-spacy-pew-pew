@@ -9,7 +9,7 @@ func _ready():
 
 
 func _process(_delta):
-	_realign_particles_grid()
+	_align_particles_on_grid()
 	
 
 
@@ -91,31 +91,42 @@ func _setupParticles():
 
 	
 	
-func _realign_particles_grid():
-	_realign_paricles_node(particles_matrix[0][0])
-	#_realign_paricles_node(particles_matrix[1][0])
+func _align_particles_on_grid():
+	_align_paricles_node(particles_matrix[0][0])
+	#_align_paricles_node(particles_matrix[1][0])
 
 
-func _realign_paricles_node(node):
+func _align_paricles_node(node):
+	var old_position = node.position
+	node.position = _grid_alignment(tile_size, node.grid_offset)
+	if old_position != node.position:
+		_fast_rebuild_particles_node(node)
+
+
+func _grid_alignment(tile_size, grid_offset):
 	var camera = get_viewport().get_camera_2d()
 	var camera_position = camera.get_screen_center_position()
 
-	var old_position = node.position
-	node.position.x = _realign_paricles_node_on_axis(
+	var pos = Vector2.ZERO
+	pos.x = _align_paricles_node_on_axis(
 		camera_position.x, 
 		tile_size.x,
-		node.grid_offset.x,
+		grid_offset.x,
 	)
-	node.position.y = _realign_paricles_node_on_axis(
+	pos.y = _align_paricles_node_on_axis(
 		camera_position.y, 
 		tile_size.y,
-		node.grid_offset.y,
+		grid_offset.y,
 	)
-	if old_position != node.position:
-		node.speed_scale = 64
-		print("starting")
-		node.timer.start()
+	return pos
 
-func _realign_paricles_node_on_axis(camera_position, tile_len, _grid_offset):
+
+func _align_paricles_node_on_axis(camera_position, tile_len, _grid_offset):
 	var snap_offset = tile_len
 	return floor(camera_position/snap_offset) * snap_offset
+	
+
+func _fast_rebuild_particles_node(node):
+	node.speed_scale = 64
+	node.timer.start()
+
