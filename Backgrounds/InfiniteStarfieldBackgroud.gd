@@ -4,6 +4,8 @@ extends Node2D
 
 @export_subgroup('particle_overrides')
 @export var amount := 500
+@export var preprocess:= 10
+#@export var preprocess:= 500
 @export var stars_texture_resource := "star5"
 @export var scale_min := 0.01
 @export var scale_max := 0.03
@@ -78,7 +80,7 @@ func _buildParticlesNode(index = 0, x=0, y=0):
 	var particles = StarfieldParticles.new()
 	particles.amount = amount
 	particles.lifetime = 500
-	particles.preprocess = 0
+	particles.preprocess = preprocess
 	particles.texture = textures[stars_texture_resource]
 	particles.process_material = process_material
 	particles.visibility_rect = Rect2(
