@@ -112,9 +112,6 @@ func _setupParticles():
 			index += 1
 
 	particles_matrix[0][0].preprocess = 500
-	_fast_rebuild_particles_node(particles_matrix[1][0])
-	_fast_rebuild_particles_node(particles_matrix[0][1])
-	_fast_rebuild_particles_node(particles_matrix[1][1])
 	_calc_grid_offsets()
 	
 	for y in range(0,2):
@@ -123,6 +120,11 @@ func _setupParticles():
 			particles.position = _grid_alignment(particles.grid_offset)
 			add_child(particles)
 			add_child(particles.timer)
+					
+	_fast_rebuild_particles_node(particles_matrix[1][0])
+	_fast_rebuild_particles_node(particles_matrix[0][1])
+	_fast_rebuild_particles_node(particles_matrix[1][1])
+
 
 	
 	

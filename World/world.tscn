@@ -37,25 +37,17 @@ text = "Coords
 "
 
 [node name="UpButton" type="TouchScreenButton" parent="CanvasLayer"]
-visible = false
 shape = SubResource("ConvexPolygonShape2D_ggkur")
-shape_visible = false
 action = "thrust_forward"
 
 [node name="DownButton" type="TouchScreenButton" parent="CanvasLayer"]
-visible = false
 shape = SubResource("ConvexPolygonShape2D_gin13")
-shape_visible = false
 action = "thrust_reverse"
 
 [node name="LeftButton" type="TouchScreenButton" parent="CanvasLayer"]
-visible = false
 shape = SubResource("ConvexPolygonShape2D_y6k4o")
-shape_visible = false
 action = "rotate_left"
 
 [node name="RightButton" type="TouchScreenButton" parent="CanvasLayer"]
-visible = false
 shape = SubResource("ConvexPolygonShape2D_u5roy")
-shape_visible = false
 action = "rotate_right"
