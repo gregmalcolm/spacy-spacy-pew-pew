@@ -11,7 +11,7 @@ extends Node2D
 @export var initial_velocity_max := 0.01
 @export var velocity_direction := Vector3(0.0, 1.0, 0.0)
 
-const SIZE_FACTOR = 2.0
+const SIZE_FACTOR = 4.0
 const DEFAULT_SIZE_X = 2048 * SIZE_FACTOR
 const DEFAULT_SIZE_Y = 2176 * SIZE_FACTOR
 
@@ -78,7 +78,7 @@ func _buildParticlesNode(index = 0, x=0, y=0):
 	var particles = StarfieldParticles.new()
 	particles.amount = amount
 	particles.lifetime = 500
-	particles.preprocess = 500
+	particles.preprocess = 0
 	particles.texture = textures[stars_texture_resource]
 	particles.process_material = process_material
 	particles.visibility_rect = Rect2(
@@ -109,6 +109,10 @@ func _setupParticles():
 			particles_matrix[y][x] = _buildParticlesNode(index, x, y)
 			index += 1
 
+	particles_matrix[0][0].preprocess = 500
+	_fast_rebuild_particles_node(particles_matrix[1][0])
+	_fast_rebuild_particles_node(particles_matrix[0][1])
+	_fast_rebuild_particles_node(particles_matrix[1][1])
 	_calc_grid_offsets()
 	
 	for y in range(0,2):
