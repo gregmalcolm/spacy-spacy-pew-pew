@@ -28,8 +28,8 @@ func _process(_delta):
 
 
 func _handle_button_press(sprite):
-	sprite.self_modulate.a = 0.2
+	sprite.self_modulate.a = 0.02
 
 
 func _handle_button_release(sprite):
-	sprite.self_modulate.a = 0.02
+	sprite.self_modulate.a = 0.005
