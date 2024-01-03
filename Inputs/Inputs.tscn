@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://dvg1exap74vpu"]
+
+[ext_resource type="Texture2D" uid="uid://bhd3jaf3jkj4u" path="res://addons/Menu Buttons/Square Buttons/Square Buttons/Up Square Button.png" id="1_cqk6l"]
+[ext_resource type="Script" path="res://Inputs/Inputs.gd" id="1_tfjta"]
+[ext_resource type="Texture2D" uid="uid://bgs6xrq6p5gca" path="res://addons/Menu Buttons/Square Buttons/Square Buttons/Down Square Button.png" id="2_sv7cc"]
+[ext_resource type="Texture2D" uid="uid://32v2u420asjv" path="res://addons/Menu Buttons/Square Buttons/Square Buttons/Back Square Button.png" id="3_opt3k"]
+[ext_resource type="Texture2D" uid="uid://cuitnol1nop2s" path="res://addons/Menu Buttons/Square Buttons/Square Buttons/Next Square Button.png" id="4_i011q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bluai"]
+size = Vector2(120, 160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mjs8v"]
+size = Vector2(120, 160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kknnn"]
+size = Vector2(110, 160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lokfk"]
+size = Vector2(110, 160)
+
+[node name="Inputs" type="CanvasLayer"]
+script = ExtResource("1_tfjta")
+
+[node name="UpTexture" type="Sprite2D" parent="."]
+position = Vector2(360, 824)
+texture = ExtResource("1_cqk6l")
+
+[node name="DownTexture" type="Sprite2D" parent="."]
+position = Vector2(360, 1072)
+texture = ExtResource("2_sv7cc")
+
+[node name="LeftTexture" type="Sprite2D" parent="."]
+position = Vector2(120, 944)
+texture = ExtResource("3_opt3k")
+
+[node name="RightTexture" type="Sprite2D" parent="."]
+position = Vector2(600, 944)
+texture = ExtResource("4_i011q")
+
+[node name="DownButton" type="TouchScreenButton" parent="."]
+position = Vector2(360, 1112)
+scale = Vector2(2.09, 2.02)
+shape = SubResource("RectangleShape2D_bluai")
+action = "thrust_reverse"
+
+[node name="UpButton" type="TouchScreenButton" parent="."]
+position = Vector2(360, 784)
+scale = Vector2(2.09, 2.02)
+shape = SubResource("RectangleShape2D_mjs8v")
+action = "thrust_forward"
+
+[node name="RightButton" type="TouchScreenButton" parent="."]
+position = Vector2(605, 944)
+scale = Vector2(2.09, 2.02)
+shape = SubResource("RectangleShape2D_kknnn")
+action = "rotate_right"
+
+[node name="LeftButton" type="TouchScreenButton" parent="."]
+position = Vector2(116, 944)
+scale = Vector2(2.09, 2.02)
+shape = SubResource("RectangleShape2D_lokfk")
+action = "rotate_left"
+
+[connection signal="pressed" from="DownButton" to="." method="_on_down_button_pressed"]
+[connection signal="released" from="DownButton" to="." method="_on_down_button_released"]
+[connection signal="pressed" from="UpButton" to="." method="_on_up_button_pressed"]
+[connection signal="released" from="UpButton" to="." method="_on_up_button_released"]
+[connection signal="pressed" from="RightButton" to="." method="_on_right_button_pressed"]
+[connection signal="released" from="RightButton" to="." method="_on_right_button_released"]
+[connection signal="pressed" from="LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="released" from="LeftButton" to="." method="_on_left_button_released"]

@@ -23,13 +23,3 @@ func _physics_process(delta):
 		velocity = velocity.move_toward(Vector2.ZERO, 3)
 	
 	move_and_slide()
-	
-	#if global_position.y < -1500:
-		#global_position.y = 2750
-	#elif global_position.y > 2750:
-		#global_position.y = -1500
-	#if global_position.x < -1500:
-		#global_position.x = 2250
-	#elif global_position.x > 2250:
-		#global_position.x = -1500
- 	
