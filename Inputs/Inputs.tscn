@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://dvg1exap74vpu"]
 
-[ext_resource type="Texture2D" uid="uid://bhd3jaf3jkj4u" path="res://addons/Menu Buttons/Square Buttons/Square Buttons/Up Square Button.png" id="1_cqk6l"]
+[ext_resource type="Texture2D" uid="uid://bhm0iahcexycw" path="res://addons/Menu Buttons/Square Buttons/Square Buttons/Up Square Button.png" id="1_cqk6l"]
 [ext_resource type="Script" path="res://Inputs/Inputs.gd" id="1_tfjta"]
-[ext_resource type="Texture2D" uid="uid://bgs6xrq6p5gca" path="res://addons/Menu Buttons/Square Buttons/Square Buttons/Down Square Button.png" id="2_sv7cc"]
-[ext_resource type="Texture2D" uid="uid://32v2u420asjv" path="res://addons/Menu Buttons/Square Buttons/Square Buttons/Back Square Button.png" id="3_opt3k"]
-[ext_resource type="Texture2D" uid="uid://cuitnol1nop2s" path="res://addons/Menu Buttons/Square Buttons/Square Buttons/Next Square Button.png" id="4_i011q"]
+[ext_resource type="Texture2D" uid="uid://b3u7s2hjdnum2" path="res://addons/Menu Buttons/Square Buttons/Square Buttons/Down Square Button.png" id="2_sv7cc"]
+[ext_resource type="Texture2D" uid="uid://cwdhfa517cmix" path="res://addons/Menu Buttons/Square Buttons/Square Buttons/Back Square Button.png" id="3_opt3k"]
+[ext_resource type="Texture2D" uid="uid://bgea81c4ounkt" path="res://addons/Menu Buttons/Square Buttons/Square Buttons/Next Square Button.png" id="4_i011q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bluai"]
 size = Vector2(120, 160)
