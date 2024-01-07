@@ -22,41 +22,41 @@ size = Vector2(110, 160)
 script = ExtResource("1_tfjta")
 
 [node name="UpTexture" type="Sprite2D" parent="."]
-position = Vector2(360, 824)
+position = Vector2(362, 1138)
 texture = ExtResource("1_cqk6l")
 
 [node name="DownTexture" type="Sprite2D" parent="."]
-position = Vector2(360, 1072)
+position = Vector2(362, 1386)
 texture = ExtResource("2_sv7cc")
 
 [node name="LeftTexture" type="Sprite2D" parent="."]
-position = Vector2(120, 944)
+position = Vector2(122, 1258)
 texture = ExtResource("3_opt3k")
 
 [node name="RightTexture" type="Sprite2D" parent="."]
-position = Vector2(600, 944)
+position = Vector2(602, 1258)
 texture = ExtResource("4_i011q")
 
 [node name="DownButton" type="TouchScreenButton" parent="."]
-position = Vector2(360, 1112)
+position = Vector2(362, 1426)
 scale = Vector2(2.09, 2.02)
 shape = SubResource("RectangleShape2D_bluai")
 action = "thrust_reverse"
 
 [node name="UpButton" type="TouchScreenButton" parent="."]
-position = Vector2(360, 784)
+position = Vector2(362, 1098)
 scale = Vector2(2.09, 2.02)
 shape = SubResource("RectangleShape2D_mjs8v")
 action = "thrust_forward"
 
 [node name="RightButton" type="TouchScreenButton" parent="."]
-position = Vector2(605, 944)
+position = Vector2(607, 1258)
 scale = Vector2(2.09, 2.02)
 shape = SubResource("RectangleShape2D_kknnn")
 action = "rotate_right"
 
 [node name="LeftButton" type="TouchScreenButton" parent="."]
-position = Vector2(116, 944)
+position = Vector2(118, 1258)
 scale = Vector2(2.09, 2.02)
 shape = SubResource("RectangleShape2D_lokfk")
 action = "rotate_left"

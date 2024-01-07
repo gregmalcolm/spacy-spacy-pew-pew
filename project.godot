@@ -12,14 +12,14 @@ config_version=5
 
 config/name="Spacy Spacy Pew Pew!"
 run/main_scene="res://TitleScreen/title_screen.tscn"
-config/features=PackedStringArray("4.2", "Mobile")
+config/features=PackedStringArray("4.2")
 config/icon="res://icon.svg"
 
 [display]
 
 window/size/viewport_width=720
-window/size/viewport_height=1280
-window/size/mode=3
+window/size/viewport_height=1600
+window/size/mode=2
 window/size/window_width_override=540
 window/size/window_height_override=960
 window/stretch/mode="canvas_items"
