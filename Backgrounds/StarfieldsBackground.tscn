@@ -5,7 +5,6 @@
 [node name="StarfieldsBackground" type="Node2D"]
 
 [node name="BackStarfield" parent="." instance=ExtResource("1_6slfu")]
-amount = 100
 
 [node name="MidStarfield" parent="." instance=ExtResource("1_6slfu")]
 amount = 100

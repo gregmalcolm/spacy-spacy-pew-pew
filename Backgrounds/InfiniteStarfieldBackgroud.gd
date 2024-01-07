@@ -1,9 +1,13 @@
 extends Node2D
 
+const SIZE_FACTOR = 4
+const DEFAULT_SIZE_X = 2048 * SIZE_FACTOR
+const DEFAULT_SIZE_Y = 2176 * SIZE_FACTOR
+
 @export var tile_size := Vector2(DEFAULT_SIZE_X, DEFAULT_SIZE_Y)
 
 @export_subgroup('particle_overrides')
-@export var amount := 5000
+@export var amount := 500 * SIZE_FACTOR
 @export var preprocess_max := 500
 @export var rePreprocess_max := 100
 @export var stars_texture_resource := "star5"
@@ -12,10 +16,6 @@ extends Node2D
 @export var initial_velocity_min := 0.01
 @export var initial_velocity_max := 0.01
 @export var velocity_direction := Vector3(0.0, 1.0, 0.0)
-
-const SIZE_FACTOR = 4.0
-const DEFAULT_SIZE_X = 2048 * SIZE_FACTOR
-const DEFAULT_SIZE_Y = 2176 * SIZE_FACTOR
 
 var particles_matrix
 var bearing_west: bool = true
