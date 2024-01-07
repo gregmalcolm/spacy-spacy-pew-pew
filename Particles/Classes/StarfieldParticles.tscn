@@ -1,12 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3csn1khssips"]
+[gd_scene load_steps=2 format=3 uid="uid://c3csn1khssips"]
 
 [ext_resource type="Script" path="res://Particles/Classes/StarfieldParticles.gd" id="1_ynfa4"]
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mbydh"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 98, 0)
-
-[node name="StarfieldParticles" type="GPUParticles2D"]
-process_material = SubResource("ParticleProcessMaterial_mbydh")
+[node name="StarfieldParticles" type="CPUParticles2D"]
 speed_scale = 0.0
 script = ExtResource("1_ynfa4")
