@@ -8,12 +8,12 @@ const DEFAULT_SIZE_Y = 2176 * SIZE_FACTOR
 
 @export_subgroup('particle_overrides')
 #@export var amount := 500 * SIZE_FACTOR
-@export var amount := 300 * SIZE_FACTOR
+@export var amount := 200 * SIZE_FACTOR
 @export var preprocess_max := 100
 @export var repreprocess_max := 100
 @export var stars_texture_resource := "star5"
-@export var scale_min := 0.01
-@export var scale_max := 0.03
+@export var scale_min := 0.03
+@export var scale_max := 0.1
 @export var initial_velocity_min := 0.01
 @export var initial_velocity_max := 0.01
 @export var velocity_direction := Vector3(0.0, 1.0, 0.0)
@@ -66,6 +66,11 @@ func _buildParticlesNode(index = 0, x=0, y=0):
 	process_material.initial_velocity_min = initial_velocity_min
 	process_material.initial_velocity_max = initial_velocity_max
 	process_material.direction = velocity_direction
+	#process_material.angle_min = -640
+	#process_material.angle_max = 640
+	#process_material.angular_velocity_min = -5
+	#process_material.angular_velocity_max = 5
+
 	var textures = {
 		"star1" : preload("res://addons/kenney_particle-pack/PNG (Transparent)/star_01.png"),
 		"star2" : preload("res://addons/kenney_particle-pack/PNG (Transparent)/star_02.png"),

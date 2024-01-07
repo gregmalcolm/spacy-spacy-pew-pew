@@ -4,10 +4,6 @@ extends CharacterBody2D
 @export var max_speed := 300.0
 @export var rotation_speed := 250.0
 
-func _process(_delta):
-	pass
-
-
 func _physics_process(delta):
 	var input_vector := Vector2(0, Input.get_axis("thrust_forward", "thrust_reverse"))
 	
