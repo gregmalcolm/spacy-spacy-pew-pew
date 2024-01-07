@@ -3,9 +3,9 @@ extends Node2D
 @export var tile_size := Vector2(DEFAULT_SIZE_X, DEFAULT_SIZE_Y)
 
 @export_subgroup('particle_overrides')
-@export var amount := 500
-@export var preprocess:= 10
-#@export var preprocess:= 500
+@export var amount := 5000
+@export var preprocess_max := 500
+@export var rePreprocess_max := 100
 @export var stars_texture_resource := "star5"
 @export var scale_min := 0.01
 @export var scale_max := 0.03
@@ -80,7 +80,7 @@ func _buildParticlesNode(index = 0, x=0, y=0):
 	var particles = StarfieldParticles.new()
 	particles.amount = amount
 	particles.lifetime = 500
-	particles.preprocess = preprocess
+	particles.preprocess = min(amount, preprocess_max)
 	particles.texture = textures[stars_texture_resource]
 	particles.process_material = process_material
 	particles.visibility_rect = Rect2(
@@ -111,7 +111,7 @@ func _setupParticles():
 			particles_matrix[y][x] = _buildParticlesNode(index, x, y)
 			index += 1
 
-	particles_matrix[0][0].preprocess = 500
+	particles_matrix[0][0].preprocess = min(amount * 0.2, preprocess_max)
 	_calc_grid_offsets()
 	
 	for y in range(0,2):
